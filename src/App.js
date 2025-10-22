@@ -45,7 +45,7 @@ export default function App() {
 
       {/* Header */}
       <motion.img
-        src="/profile.jpg"
+        src="/profile.jpeg"
         alt="Farah Firdavsi"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
