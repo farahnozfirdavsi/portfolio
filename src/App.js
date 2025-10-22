@@ -11,15 +11,22 @@ export default function App() {
     cursor.style.pointerEvents = 'none';
     cursor.style.backgroundColor = '#44614D';
     cursor.style.zIndex = '9999';
+    cursor.style.transform = 'translate(-50%, -50%)';
+    cursor.style.mixBlendMode = 'difference';
     document.body.appendChild(cursor);
 
+    document.body.style.cursor = 'none';
+
     const moveCursor = (e) => {
-      cursor.style.left = `${e.clientX - 8}px`;
-      cursor.style.top = `${e.clientY - 8}px`;
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
     };
 
     window.addEventListener('mousemove', moveCursor);
-    return () => window.removeEventListener('mousemove', moveCursor);
+    return () => {
+      window.removeEventListener('mousemove', moveCursor);
+      document.body.style.cursor = 'auto';
+    };
   }, []);
 
   const { scrollYProgress } = useScroll();
@@ -29,43 +36,15 @@ export default function App() {
   return (
     <motion.div
       style={{ y: backgroundY, opacity }}
-      className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-[#F8F4EF] to-[#E7E2DB] text-[#2C2A26] p-8 font-[Inter, sans-serif] relative overflow-x-hidden"
+      className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-br from-[#F8F4EF] via-[#EDE7E0] to-[#D6CFC3] text-[#2C2A26] p-8 font-[Inter, sans-serif] relative overflow-x-hidden"
     >
-      {/* Dynamic floating shapes */}
-      <motion.div
-        className="absolute w-64 h-64 bg-[#C7D8CF] rounded-full top-10 left-10 opacity-30 blur-3xl"
-        animate={{ y: [0, 30, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute w-80 h-80 bg-[#E6D8CE] rounded-full bottom-10 right-10 opacity-30 blur-3xl"
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      {/* Header */}
-      <motion.img
-        src="/profile.jpeg"
-        alt="Farah Firdavsi"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
-        className="w-32 h-32 rounded-full border-4 border-[#C7D8CF] shadow-lg mt-8 mb-4 z-10"
-      />
-
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center z-10"
-      >
+      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center z-10 mt-12">
         <h1 className="text-4xl font-bold text-[#44614D] mb-3">Hi, I'm Farah Firdavsi 🌿</h1>
         <p className="max-w-lg text-[#5A5A55] leading-relaxed text-md">
           I’m a data analysis student passionate about uncovering insights and turning complexity into clarity.
         </p>
       </motion.div>
 
-      {/* Links with more interactivity */}
       <div className="flex gap-4 mt-6 z-10">
         {[{ name: 'LinkedIn', link: 'https://linkedin.com', color: '#C7D8CF' }, { name: 'GitHub', link: 'https://github.com', color: '#E6D8CE' }].map((btn, i) => (
           <motion.a
@@ -82,14 +61,8 @@ export default function App() {
         ))}
       </div>
 
-      {/* Scrolling fun sections */}
       <div className="mt-20 w-full max-w-3xl space-y-24 z-10">
-        {/* Education */}
-        <motion.section
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 60 }}
-          transition={{ duration: 0.8 }}
-        >
+        <motion.section whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 60 }} transition={{ duration: 0.8 }}>
           <h2 className="text-2xl font-semibold text-[#44614D] mb-3">Education</h2>
           <div className="bg-[#F0EBE4] rounded-xl p-5 shadow-sm hover:shadow-md hover:scale-[1.02] transition">
             <p className="font-medium">University of Michigan — B.S. in Information Analysis</p>
@@ -99,12 +72,7 @@ export default function App() {
           </div>
         </motion.section>
 
-        {/* Experience */}
-        <motion.section
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 60 }}
-          transition={{ duration: 0.8 }}
-        >
+        <motion.section whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 60 }} transition={{ duration: 0.8 }}>
           <h2 className="text-2xl font-semibold text-[#44614D] mb-3">Experience</h2>
           <div className="bg-[#EDE7E0] rounded-xl p-5 shadow-sm hover:shadow-md hover:scale-[1.02] transition space-y-3">
             <div>
@@ -130,12 +98,7 @@ export default function App() {
           </div>
         </motion.section>
 
-        {/* Leadership */}
-        <motion.section
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 60 }}
-          transition={{ duration: 0.8 }}
-        >
+        <motion.section whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 60 }} transition={{ duration: 0.8 }}>
           <h2 className="text-2xl font-semibold text-[#44614D] mb-3">Leadership</h2>
           <div className="bg-[#E9E3DC] rounded-xl p-5 shadow-sm hover:shadow-md hover:scale-[1.02] transition space-y-3">
             <div>
@@ -163,12 +126,7 @@ export default function App() {
           </div>
         </motion.section>
 
-        {/* Projects */}
-        <motion.section
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 60 }}
-          transition={{ duration: 0.8 }}
-        >
+        <motion.section whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 60 }} transition={{ duration: 0.8 }}>
           <h2 className="text-2xl font-semibold text-[#44614D] mb-3">Projects</h2>
           <div className="grid md:grid-cols-2 gap-5">
             <motion.div whileHover={{ scale: 1.05 }} className="bg-[#E6D8CE] rounded-xl p-5 shadow-sm">
@@ -183,9 +141,8 @@ export default function App() {
         </motion.section>
       </div>
 
-      {/* Footer */}
       <footer className="mt-24 mb-8 text-xs text-[#8A887F] z-10">
-        <p>© 2025 Farah Firdavsi | Made with 🌿 and React</p>
+        <p>© 2025 Farah Firdavsi | Made with React</p>
       </footer>
     </motion.div>
   );
