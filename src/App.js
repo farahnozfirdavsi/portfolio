@@ -46,7 +46,7 @@ export default function App() {
       </motion.div>
 
       <div className="flex gap-4 mt-6 z-10">
-        {[{ name: 'LinkedIn', link: 'https://linkedin.com', color: '#C7D8CF' }, { name: 'GitHub', link: 'https://github.com', color: '#E6D8CE' }].map((btn, i) => (
+        {[{ name: 'LinkedIn', link: 'https://www.linkedin.com/in/farahnoz-firdavsi-6951351b6/', color: '#C7D8CF' }, { name: 'GitHub', link: 'https://github.com/farahnozfirdavsi', color: '#E6D8CE' }].map((btn, i) => (
           <motion.a
             key={i}
             href={btn.link}
